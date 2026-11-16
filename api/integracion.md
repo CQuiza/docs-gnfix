@@ -16,6 +16,11 @@ La API usa cookies HttpOnly:
 - `gnfix_csrf` — token CSRF para métodos mutables.
 - `gnfix_guest` — sesión de invitado.
 
+Los nombres son configurables en el `.env` del backend (`ACCESS_COOKIE_NAME`,
+`REFRESH_COOKIE_NAME`, `CSRF_COOKIE_NAME`, `GUEST_COOKIE_NAME`,
+`OAUTH_STATE_COOKIE_NAME`). El frontend lee el CSRF con
+`VITE_CSRF_COOKIE_NAME`, así que ese valor y `CSRF_COOKIE_NAME` deben coincidir.
+
 Login:
 
 ```bash
