@@ -11,10 +11,10 @@
 
 La API usa cookies HttpOnly:
 
-- `geohub_access` — access token JWT de 15 min.
-- `geohub_refresh` — refresh token opaco rotado.
-- `geohub_csrf` — token CSRF para métodos mutables.
-- `geohub_guest` — sesión de invitado.
+- `gnfix_access` — access token JWT de 15 min.
+- `gnfix_refresh` — refresh token opaco rotado.
+- `gnfix_csrf` — token CSRF para métodos mutables.
+- `gnfix_guest` — sesión de invitado.
 
 Login:
 
@@ -64,7 +64,7 @@ Los endpoints de máquina (`/auth/token`) no usan CAPTCHA.
 ## OAuth
 
 `GET /auth/oauth/{provider}/authorize` devuelve la URL del proveedor y setea la
-cookie `HttpOnly` `geohub_oauth_state` (hash del `state`, ruta
+cookie `HttpOnly` `gnfix_oauth_state` (hash del `state`, ruta
 `/api/v1/auth/oauth`). El callback exige esa cookie, la borra y rechaza el flujo
 si no coincide. No compartas la URL de callback entre navegadores.
 
@@ -73,11 +73,11 @@ si no coincide. No compartas la URL de callback entre navegadores.
 Todo `POST`, `PUT`, `PATCH` o `DELETE` autenticado requiere:
 
 ```http
-X-CSRF-Token: <valor de la cookie geohub_csrf>
+X-CSRF-Token: <valor de la cookie gnfix_csrf>
 ```
 
 ```bash
-CSRF=$(awk '$6=="geohub_csrf" {print $7}' cookies.txt)
+CSRF=$(awk '$6=="gnfix_csrf" {print $7}' cookies.txt)
 curl -b cookies.txt -H "X-CSRF-Token: $CSRF" ...
 ```
 
