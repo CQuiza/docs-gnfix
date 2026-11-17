@@ -329,6 +329,14 @@ ocultar el error solo confunde.
 - `DEM_ENABLED`, `DEM_URL_TEMPLATE`, `DEM_ZOOM`, `DEM_CACHE_DIR`,
   `DEM_TIMEOUT_SECONDS`, `DEM_MAX_TILES`: modelo de elevación del QA de vuelo.
   La caché debe montarse como volumen para no re-descargar teselas.
+- `REPORT_MAP_ENABLED`, `REPORT_MAP_URL_TEMPLATE`, `REPORT_MAP_CACHE_DIR`,
+  `REPORT_MAP_TIMEOUT_SECONDS`, `REPORT_MAP_MAX_TILES`, `REPORT_MAP_WIDTH`,
+  `REPORT_MAP_HEIGHT`, `REPORT_MAP_ATTRIBUTION`: mapa base OSM del informe PDF.
+  Genera la trayectoria, la CORS base, norte, escala, grilla y leyenda. Si no
+  hay red o las teselas fallan, el informe cae al croquis de cobertura.
+- El informe lista las teselas DEM usadas y la URL del DEM en la sección
+  “Fuentes”.
 
-No renombrar `geohub` (paquete, base de datos, bucket, cookies): solo cambia la
-marca visible.
+No renombrar el paquete `geohub`, las colas `geohub.*`, las métricas
+`geohub_http_*` ni el bucket: no aportan al usuario y complican el despliegue.
+Las cookies e identificadores de sesión sí usan `gnfix_*`.
