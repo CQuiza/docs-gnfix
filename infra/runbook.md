@@ -320,6 +320,21 @@ ocultar el error solo confunde.
   vulnerabilidades. El árbol de desarrollo mantiene hallazgos moderados en la
   cadena de ESLint/minimatch; no afectan al bundle de producción.
 
+### Verificación de correo y cuota
+
+- `EMAIL_VERIFICATION_REQUIRED=true` (por defecto): una cuenta sin verificar
+  puede iniciar sesión, pero no subir RINEX, crear solicitudes de efemérides,
+  lanzar postprocesos ni usar geotagging. Recibe
+  `403 auth.email_not_verified`.
+- El registro envía un enlace a `{FRONTEND_URL}/verify-email?token=...`;
+  requiere SMTP configurado. Sin correo real no hay verificación y la cuenta
+  queda limitada a lectura.
+- Los invitados conservan su cuota diaria por IP; las cuentas verificadas no
+  tienen cuota. Una cuenta falsa ya no obtiene cuota ilimitada.
+- Activar Cloudflare Turnstile en producción (`TURNSTILE_ENABLED=true` con la
+  clave secreta en el backend y `VITE_TURNSTILE_SITE_KEY` en el frontend) para
+  frenar registros automatizados.
+
 ## Variables de marca y DEM
 
 - `APP_NAME` (backend): nombre visible en `/health`, OpenAPI, correos y PDF.
